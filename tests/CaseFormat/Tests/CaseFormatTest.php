@@ -15,10 +15,15 @@ class CaseFormatTest extends \PHPUnit_Framework_TestCase {
         CaseFormat::LOWER_HYPHEN => 'foo-bar',
         CaseFormat::LOWER_UNDERSCORE => 'foo_bar',
         CaseFormat::LOWER_CAMEL => 'fooBar',
+        CaseFormat::LOWER_SPACE => 'foo bar',
         CaseFormat::UPPER_CAMEL => 'FooBar',
-        CaseFormat::UPPER_UNDERSCORE => 'FOO_BAR'
+        CaseFormat::UPPER_UNDERSCORE => 'FOO_BAR',
+        CaseFormat::UPPER_SPACE => 'FOO BAR'
     );
 
+    /**
+     * Test conversion to every format from every format.
+     */
     public function testConversion(){
         foreach($this->formats as $fromFormat => $input){
             foreach($this->formats as $toFormat => $expected){

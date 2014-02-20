@@ -22,8 +22,10 @@ The following case formats are supported:
 | LOWER_HYPHEN | foo-bar |
 | LOWER_UNDERSCORE | foo_bar |
 | LOWER_CAMEL | fooBar |
+| LOWER_SPACE | foo bar |
 | UPPER_CAMEL | FooBar |
 | UPPER_UNDERSCORE | FOO_BAR |
+| UPPER_SPACE | FOO BAR |
 
 Conversion from `LOWER_UNDERSCORE` to `UPPER_CAMEL`, for example, is done like so:
 ```php

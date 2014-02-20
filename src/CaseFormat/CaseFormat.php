@@ -12,8 +12,10 @@ class CaseFormat {
     const LOWER_HYPHEN = 'lower_hyphen';            // foo-bar
     const LOWER_UNDERSCORE = 'lower_underscore';    // foo_bar
     const LOWER_CAMEL = 'lower_camel';              // fooBar
+    const LOWER_SPACE = 'lower_space';              // foo bar
     const UPPER_CAMEL = 'upper_camel';              // FooBar
     const UPPER_UNDERSCORE = 'upper_underscore';    // FOO_BAR
+    const UPPER_SPACE = 'upper_space';              // FOO BAR
 
     /**
      * A string in LOWER_UNDERSCORE format
@@ -61,7 +63,19 @@ class CaseFormat {
     }
 
     /**
-     * @param $string
+     * @param string $string
+     * @return static
+     */
+    public static function LOWER_SPACE($string){
+        $formatted = '';
+        foreach(explode(' ', $string) as $part){
+            $formatted .= ucfirst($part);
+        }
+        return new static($formatted);
+    }
+
+    /**
+     * @param string $string
      * @return static
      */
     public static function UPPER_CAMEL($string){
@@ -69,12 +83,24 @@ class CaseFormat {
     }
 
     /**
-     * @param $string
+     * @param string $string
      * @return static
      */
     public static function UPPER_UNDERSCORE($string){
         $formatted = '';
         foreach(explode('_', $string) as $part){
+            $formatted .= ucfirst(strtolower($part));
+        }
+        return new static($formatted);
+    }
+
+    /**
+     * @param string $string
+     * @return static
+     */
+    public static function UPPER_SPACE($string){
+        $formatted = '';
+        foreach(explode(' ', $string) as $part){
             $formatted .= ucfirst(strtolower($part));
         }
         return new static($formatted);
@@ -100,12 +126,20 @@ class CaseFormat {
                 return lcfirst($this->string);
                 break;
 
+            case self::LOWER_SPACE:
+                return strtolower($this->explodeOnCapsAndImplode(' ', $this->string));
+                break;
+
             case self::UPPER_UNDERSCORE:
                 return strtoupper($this->explodeOnCapsAndImplode('_', $this->string));
                 break;
 
             case self::UPPER_CAMEL:
                 return $this->string;
+                break;
+
+            case self::UPPER_SPACE:
+                return strtoupper($this->explodeOnCapsAndImplode(' ', $this->string));
                 break;
 
             default:
