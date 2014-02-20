@@ -16,6 +16,7 @@ php composer.phar require jlinn/caseformat:~1.0
 ## Usage
 
 The following case formats are supported:
+
 | Format | Example |
 |--------|---------|
 | LOWER_HYPHEN | foo-bar |
@@ -30,4 +31,4 @@ use CaseFormat\CaseFormat;
 
 $converted = CaseFormat::LOWER_UNDERSCORE("test_string")->to(CaseFormat::UPPER_CAMEL);
 ```
-In the example above, the value of `$converted` would be `TestString`.
+In the example above, the value of `$converted` would be `"TestString"`.
